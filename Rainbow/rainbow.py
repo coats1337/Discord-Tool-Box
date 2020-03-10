@@ -14,7 +14,7 @@ if is_bot == True:
     bot = True
 else:
     bot = False 
-
+    
 Rainbow = commands.Bot(
     command_prefix=prefix,
     self_bot=bot
