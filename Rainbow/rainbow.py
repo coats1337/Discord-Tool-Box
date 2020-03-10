@@ -1,4 +1,4 @@
-import discord, json, random
+import discord, json, random, asyncio
 
 from discord.ext import commands
 
@@ -25,7 +25,7 @@ def RandomColor():
     return randcolor
 
 @Rainbow.command(aliases=['rainbow-role'])
-async def rainbow(ctx, *, role): # b'\xfc'
+async def rainbow(ctx, *, role):
     await ctx.message.delete()
     role = discord.utils.get(ctx.guild.roles, name=role)
     while True:
