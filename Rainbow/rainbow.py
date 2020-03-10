@@ -35,4 +35,7 @@ async def rainbow(ctx, *, role):
         except:
             break
 
-Rainbow.run(token)
+if is_bot == True:
+    Rainbow.run(token)
+else:
+    Rainbow.run(token, bot=False)
