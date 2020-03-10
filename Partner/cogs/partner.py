@@ -29,8 +29,6 @@ class Partner(commands.Cog):
         await asyncio.sleep(5)
         if running == True:
             for guild in self.bot.guilds:
-                if guild == ctx.guild:
-                    return
                 for member in guild.members:
                     try:
                         await member.send(member.mention)
