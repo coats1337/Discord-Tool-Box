@@ -18,4 +18,4 @@ async def on_message(message):
           await ctx.channel.send('~grab')
        print(f"Stole some slotbot currency in: {Fore.GREEN}{message.channel}{Fore.RESET}  | {Fore.MAGENTA}{message.guild}{Fore.RESET}")
        
-client.run(token)       
+client.run(token, bot=False)       
