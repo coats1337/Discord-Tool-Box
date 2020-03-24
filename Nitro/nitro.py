@@ -15,16 +15,16 @@ def Menu(fileName):
     for _i in range(amount):
         Nitro(fileName)
 
-def FormatedNitro(fileName):
+def FormattedNitro(fileName):
     code = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
     with open(fileName, 'a+') as f:
         f.write('https://discord.gift/'+code+'\n')
 
-def FormatedMenu(fileName):
+def FormattedMenu(fileName):
     print(f"[{Fore.GREEN}>{Fore.RESET}] How many codes do you want to generate?")
     amount = int(input(" > "))
     for _i in range(amount):
-        FormatedNitro(fileName)
+        FormattedNitro(fileName)
 
 if __name__ == '__main__':
     print(f"[{Fore.GREEN}>{Fore.RESET}] Name of the file where to deposit the codes")
@@ -36,7 +36,7 @@ if __name__ == '__main__':
     """)
     choice = int(input(" > "))  
     if choice == 1:
-        FormatedMenu(fileName)
+        FormattedMenu(fileName)
     elif choice == 2:
         Menu(fileName)
     else:
