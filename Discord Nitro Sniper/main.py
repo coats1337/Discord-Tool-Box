@@ -56,15 +56,9 @@ class disClient(commands.Bot):
       pass
 
   def returnData(self, status, code, value1, value2):
-    if status == 'INVALID CODE':
+    if status == 'INVALID CODE' or 'DENIED':
       perhaps = Fore.RED
-    elif status == 'DENIED':
-      perhaps = Fore.RED
-    elif status == 'ALREADY REDEEMED':
-      perhaps = Fore.YELLOW
-    elif status == 'RATELIMITED':
-      perhaps = Fore.YELLOW
-    elif status == 'UNKNOWN':
+    elif status == 'ALREADY REDEEMED' or 'RATELIMITED' or 'UNKNOWN':
       perhaps = Fore.YELLOW
     else:
       perhaps = Fore.GREEN
