@@ -36,7 +36,11 @@ class disClient(commands.Bot):
     try:
       code = re.search(r'(discord.gift|discordapp.com/gifts)/\w{16,24}', message.content).group(0)
       if code:
-        r = self.session.post(f'https://discordapp.com/api/v6/entitlements/gift-codes/{code.replace("discord.gift/", "")}/redeem', headers=self.getHeaders())
+        payload = {
+          'channel_id': None,
+          'payment_source_id': None
+        }
+        r = self.session.post(f'https://discordapp.com/api/v6/entitlements/gift-codes/{code.replace("discord.gift/", "")}/redeem', headers=self.getHeaders(), json=payload)
         if self.errors[1] in r.text:
           self.returnData('INVALID CODE', code, message.guild, message.author)
           self.Save('logger.log', 'a+', f'[WARN] Invalid Code {code} | {message.guild} | {message.author}')
@@ -51,7 +55,7 @@ class disClient(commands.Bot):
           self.Save('logger.log', 'a+', '[WARN] Denied')
         else:
           self.returnData('UNKNOWN', code, message.guild, message.author)
-          self.Save('logger.log', 'a+', f'[WARN] Unknown Code {code} | {message.guild} | {message.author}')
+          self.Save('logger.log', 'a+', f'[WARN] Unknown Code {code} | {message.guild} | {message.author} | {r.text}')
     except (AttributeError):
       pass
 
