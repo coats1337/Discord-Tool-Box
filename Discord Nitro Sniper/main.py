@@ -14,14 +14,14 @@ class disClient(commands.Bot):
     self.remove_command('help')
     self.errors = {
       1: '{"message": "Unknown Gift Code", "code": 10038}',
-      2: 'subscription_plan',
+      2: '{"message": "This gift has been redeemed already.", "code": 50050}',
       3: 'You are being rate limited',
       4: 'Access denied'
     }
 
   async def stream(self):
-    while True:
-      date = datetime.datetime.now(pytz.timezone('Europe/Madrid')).strftime("%H:%M %p")  
+    while True: 
+      date = datetime.datetime.now(pytz.timezone('Europe/Madrid')).strftime("%H:%M %p") 
       await asyncio.sleep(3)
       stream = discord.Streaming(
         name=date,
@@ -45,17 +45,17 @@ class disClient(commands.Bot):
           self.returnData('INVALID CODE', code, message.guild, message.author)
           self.Save('logger.log', 'a+', f'[WARN] Invalid Code {code} | {message.guild} | {message.author}')
         elif self.errors[2] in r.text:
-          self.returnData('CLAIMED', code, message.guild, message.author)
-          self.Save('logger.log', 'a+', f'[INFO] Claimed Code {code} | {message.guild} | {message.author}')
+          self.returnData('ALREADY REDEEMED', code, message.guild, message.author)
+          self.Save('logger.log', 'a+', f'[INFO] Already redeemed Code {code} | {message.guild} | {message.author}')
         elif self.errors[3] in r.text:
-          self.returnData('RATELMITED', code, message.guild, message.author)
+          self.returnData('RATELIMITED', code, message.guild, message.author)
           self.Save('logger.log', 'a+', '[WARN] Ratelimited')
         elif self.errors[4] in r.text:
           self.returnData('DENIED', code, message.guild, message.author)
           self.Save('logger.log', 'a+', '[WARN] Denied')
         else:
-          self.returnData('UNKNOWN', code, message.guild, message.author)
-          self.Save('logger.log', 'a+', f'[WARN] Unknown Code {code} | {message.guild} | {message.author} | {r.text}')
+          self.returnData('CLAIMED', code, message.guild, message.author)
+          self.Save('logger.log', 'a+', f'[WARN] Claimed Code {code} | {message.guild} | {message.author} | {r.text}')
     except (AttributeError):
       pass
 
