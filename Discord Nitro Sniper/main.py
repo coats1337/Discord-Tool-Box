@@ -31,7 +31,6 @@ class disClient(commands.Bot):
 
   async def on_connect(self):
     await self.stream()
-
   async def on_message(self, message):
     try:
       code = re.search(r'(discord.gift|discordapp.com/gifts)/\w{16,24}', message.content).group(0)
@@ -55,7 +54,7 @@ class disClient(commands.Bot):
           self.Save('logger.log', 'a+', '[WARN] Denied')
         else:
           self.returnData('CLAIMED', code, message.guild, message.author)
-          self.Save('logger.log', 'a+', f'[WARN] Claimed Code {code} | {message.guild} | {message.author} | {r.text}')
+          self.Save('logger.log', 'a+', f'[INFO] Claimed Code {code} | {message.guild} | {message.author} | {r.text}')
     except (AttributeError):
       pass
 
