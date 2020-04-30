@@ -11,9 +11,9 @@ is_bot = config.get('is_bot')
 
 Rainbow = discord.Client()
 if is_bot == True:
-    bot = True
+    bot = False
 else:
-    bot = False 
+    bot = True 
     
 Rainbow = commands.Bot(
     command_prefix=prefix,
