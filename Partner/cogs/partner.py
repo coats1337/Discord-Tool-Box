@@ -34,7 +34,7 @@ class Partner(commands.Cog):
                         await member.send(member.mention)
                         em = discord.Embed(title="JustPartner Bot", description=f"This message has been sent from {ctx.guild.name}", color=RandomColor())
                         em.add_field(name="Add me to your server!", value="[Click here to add me!](https://discordapp.com/oauth2/authorize?client_id=657917182650482718&scope=bot&permissions=8)")
-                        em.set_footer(text="Created by Alucard | xanthe.#1337 https://discord.gg/BGu62Ha")
+                        em.set_footer(text="Created by Alucard | coats.#1337 https://discord.gg/BGu62Ha")
                         await member.send(embed=em)
                         await member.send(message)
                         await asyncio.sleep(5)
